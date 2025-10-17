@@ -31,13 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
             this.krDtpFecha = new Krypton.Toolkit.KryptonDateTimePicker();
             this.krLsvTemperaturas = new Krypton.Toolkit.KryptonListView();
+            this.colTmpMin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTmpMax = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.krTvwUbicaciones = new Krypton.Toolkit.KryptonTreeView();
             this.krLblUbicaciones = new Krypton.Toolkit.KryptonLabel();
             this.krLblFecha = new Krypton.Toolkit.KryptonLabel();
             this.krSstSeleccion = new Krypton.Toolkit.KryptonStatusStrip();
             this.krLblTemperaturas = new Krypton.Toolkit.KryptonLabel();
-            this.colTmpMin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTmpMax = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.krStStrp = new Krypton.Toolkit.KryptonStatusStrip();
             this.SuspendLayout();
             // 
             // krDtpFecha
@@ -48,7 +49,7 @@
             this.krDtpFecha.Location = new System.Drawing.Point(115, 32);
             this.krDtpFecha.Name = "krDtpFecha";
             this.krDtpFecha.PaletteMode = Krypton.Toolkit.PaletteMode.Office2010BlackDarkMode;
-            this.krDtpFecha.Size = new System.Drawing.Size(104, 25);
+            this.krDtpFecha.Size = new System.Drawing.Size(104, 21);
             this.krDtpFecha.TabIndex = 0;
             this.krDtpFecha.UpDownButtonStyle = Krypton.Toolkit.ButtonStyle.Alternate;
             // 
@@ -66,6 +67,14 @@
             this.krLsvTemperaturas.TabIndex = 1;
             this.krLsvTemperaturas.Click += new System.EventHandler(this.krLsvTemperaturas_Click);
             // 
+            // colTmpMin
+            // 
+            this.colTmpMin.Text = "Temp. Mínima";
+            // 
+            // colTmpMax
+            // 
+            this.colTmpMax.Text = "Temp. Máxima";
+            // 
             // krTvwUbicaciones
             // 
             this.krTvwUbicaciones.BackStyle = Krypton.Toolkit.PaletteBackStyle.ButtonForm;
@@ -79,7 +88,7 @@
             // 
             this.krLblUbicaciones.Location = new System.Drawing.Point(41, 80);
             this.krLblUbicaciones.Name = "krLblUbicaciones";
-            this.krLblUbicaciones.Size = new System.Drawing.Size(93, 24);
+            this.krLblUbicaciones.Size = new System.Drawing.Size(76, 20);
             this.krLblUbicaciones.TabIndex = 3;
             this.krLblUbicaciones.Values.Text = "Ubicaciones";
             // 
@@ -87,7 +96,7 @@
             // 
             this.krLblFecha.Location = new System.Drawing.Point(41, 32);
             this.krLblFecha.Name = "krLblFecha";
-            this.krLblFecha.Size = new System.Drawing.Size(51, 24);
+            this.krLblFecha.Size = new System.Drawing.Size(42, 20);
             this.krLblFecha.TabIndex = 4;
             this.krLblFecha.Values.Text = "Fecha";
             // 
@@ -107,24 +116,28 @@
             // 
             this.krLblTemperaturas.Location = new System.Drawing.Point(333, 79);
             this.krLblTemperaturas.Name = "krLblTemperaturas";
-            this.krLblTemperaturas.Size = new System.Drawing.Size(105, 24);
+            this.krLblTemperaturas.Size = new System.Drawing.Size(85, 20);
             this.krLblTemperaturas.TabIndex = 6;
             this.krLblTemperaturas.Values.Text = "Temperaturas";
             // 
-            // colTmpMin
+            // krStStrp
             // 
-            this.colTmpMin.Text = "Temp. Mínima";
-            // 
-            // colTmpMax
-            // 
-            this.colTmpMax.Text = "Temp. Máxima";
+            this.krStStrp.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.krStStrp.Location = new System.Drawing.Point(0, 492);
+            this.krStStrp.Name = "krStStrp";
+            this.krStStrp.ProgressBars = null;
+            this.krStStrp.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+            this.krStStrp.Size = new System.Drawing.Size(813, 22);
+            this.krStStrp.TabIndex = 7;
+            this.krStStrp.Text = "kryptonStatusStrip1";
             // 
             // frmInicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(246)))), ((int)(((byte)(249)))));
             this.ClientSize = new System.Drawing.Size(813, 536);
+            this.Controls.Add(this.krStStrp);
             this.Controls.Add(this.krLblTemperaturas);
             this.Controls.Add(this.krSstSeleccion);
             this.Controls.Add(this.krLblFecha);
@@ -135,7 +148,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meteorología";
@@ -155,5 +168,6 @@
         private Krypton.Toolkit.KryptonLabel krLblTemperaturas;
         private System.Windows.Forms.ColumnHeader colTmpMin;
         private System.Windows.Forms.ColumnHeader colTmpMax;
+        private Krypton.Toolkit.KryptonStatusStrip krStStrp;
     }
 }
