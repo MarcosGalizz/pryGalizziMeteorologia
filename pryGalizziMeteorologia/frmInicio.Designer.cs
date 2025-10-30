@@ -31,13 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
             this.krDtpFecha = new Krypton.Toolkit.KryptonDateTimePicker();
             this.krLsvTemperaturas = new Krypton.Toolkit.KryptonListView();
+            this.colTmpMin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTmpMax = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.krTvwUbicaciones = new Krypton.Toolkit.KryptonTreeView();
             this.krLblUbicaciones = new Krypton.Toolkit.KryptonLabel();
             this.krLblFecha = new Krypton.Toolkit.KryptonLabel();
             this.krSstSeleccion = new Krypton.Toolkit.KryptonStatusStrip();
             this.krLblTemperaturas = new Krypton.Toolkit.KryptonLabel();
-            this.colTmpMin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTmpMax = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblProvincia = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblLocalidad = new System.Windows.Forms.ToolStripStatusLabel();
+            this.krSstSeleccion.SuspendLayout();
             this.SuspendLayout();
             // 
             // krDtpFecha
@@ -51,6 +54,7 @@
             this.krDtpFecha.Size = new System.Drawing.Size(104, 25);
             this.krDtpFecha.TabIndex = 0;
             this.krDtpFecha.UpDownButtonStyle = Krypton.Toolkit.ButtonStyle.Alternate;
+            this.krDtpFecha.ValueChanged += new System.EventHandler(this.krDtpFecha_ValueChanged);
             // 
             // krLsvTemperaturas
             // 
@@ -64,7 +68,18 @@
             this.krLsvTemperaturas.Name = "krLsvTemperaturas";
             this.krLsvTemperaturas.Size = new System.Drawing.Size(362, 131);
             this.krLsvTemperaturas.TabIndex = 1;
+            this.krLsvTemperaturas.View = System.Windows.Forms.View.Details;
             this.krLsvTemperaturas.Click += new System.EventHandler(this.krLsvTemperaturas_Click);
+            // 
+            // colTmpMin
+            // 
+            this.colTmpMin.Text = "Temp. Mínima";
+            this.colTmpMin.Width = 150;
+            // 
+            // colTmpMax
+            // 
+            this.colTmpMax.Text = "Temp. Máxima";
+            this.colTmpMax.Width = 150;
             // 
             // krTvwUbicaciones
             // 
@@ -74,6 +89,7 @@
             this.krTvwUbicaciones.Name = "krTvwUbicaciones";
             this.krTvwUbicaciones.Size = new System.Drawing.Size(245, 371);
             this.krTvwUbicaciones.TabIndex = 2;
+            this.krTvwUbicaciones.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.krTvwUbicaciones_AfterSelect);
             // 
             // krLblUbicaciones
             // 
@@ -95,11 +111,14 @@
             // 
             this.krSstSeleccion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.krSstSeleccion.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.krSstSeleccion.Location = new System.Drawing.Point(0, 514);
+            this.krSstSeleccion.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblProvincia,
+            this.lblLocalidad});
+            this.krSstSeleccion.Location = new System.Drawing.Point(0, 510);
             this.krSstSeleccion.Name = "krSstSeleccion";
             this.krSstSeleccion.ProgressBars = null;
             this.krSstSeleccion.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.krSstSeleccion.Size = new System.Drawing.Size(813, 22);
+            this.krSstSeleccion.Size = new System.Drawing.Size(813, 26);
             this.krSstSeleccion.TabIndex = 5;
             this.krSstSeleccion.Text = "Seleccionado: ";
             // 
@@ -111,13 +130,17 @@
             this.krLblTemperaturas.TabIndex = 6;
             this.krLblTemperaturas.Values.Text = "Temperaturas";
             // 
-            // colTmpMin
+            // lblProvincia
             // 
-            this.colTmpMin.Text = "Temp. Mínima";
+            this.lblProvincia.Name = "lblProvincia";
+            this.lblProvincia.Size = new System.Drawing.Size(15, 20);
+            this.lblProvincia.Text = "-";
             // 
-            // colTmpMax
+            // lblLocalidad
             // 
-            this.colTmpMax.Text = "Temp. Máxima";
+            this.lblLocalidad.Name = "lblLocalidad";
+            this.lblLocalidad.Size = new System.Drawing.Size(15, 20);
+            this.lblLocalidad.Text = "-";
             // 
             // frmInicio
             // 
@@ -134,11 +157,15 @@
             this.Controls.Add(this.krDtpFecha);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meteorología";
+            this.Load += new System.EventHandler(this.frmInicio_Load);
+            this.krSstSeleccion.ResumeLayout(false);
+            this.krSstSeleccion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +182,7 @@
         private Krypton.Toolkit.KryptonLabel krLblTemperaturas;
         private System.Windows.Forms.ColumnHeader colTmpMin;
         private System.Windows.Forms.ColumnHeader colTmpMax;
+        private System.Windows.Forms.ToolStripStatusLabel lblProvincia;
+        private System.Windows.Forms.ToolStripStatusLabel lblLocalidad;
     }
 }

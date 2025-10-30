@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,10 +17,30 @@ namespace pryGalizziMeteorologia
         {
             InitializeComponent();
         }
-
+        clsConexion clsConexion = new clsConexion();
         private void krLsvTemperaturas_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+            clsConexion.ConectarBD();
+            clsConexion.cargarTreeView(krTvwUbicaciones);
+        }
+
+        private void krTvwUbicaciones_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            clsConexion.cargarListView(krLsvTemperaturas, krDtpFecha, krTvwUbicaciones.SelectedNode);
+            clsConexion.actualizarStatusStrip(krSstSeleccion, krTvwUbicaciones.SelectedNode);
+        }
+
+        private void krDtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            if (krTvwUbicaciones.SelectedNode != null)
+            {
+                clsConexion.cargarListView(krLsvTemperaturas, krDtpFecha, krTvwUbicaciones.SelectedNode);
+            }
         }
     }
 }
