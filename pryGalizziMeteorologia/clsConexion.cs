@@ -12,7 +12,7 @@ namespace pryGalizziMeteorologia
 {
     internal class clsConexion
     {
-        string cadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../../BaseDeDatos/Meteorologia.accdb";
+        string cadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=../../BaseDeDatos/Meteorologia.accdb";
 
         OleDbConnection coneccionBaseDatos;
 
